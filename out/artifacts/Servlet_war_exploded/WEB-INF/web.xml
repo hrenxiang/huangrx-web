@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <!--               servletContext参数             -->
+    <context-param>
+        <param-name>username</param-name>
+        <param-value>hh</param-value>
+    </context-param>
+    <context-param>
+        <param-name>password</param-name>
+        <param-value>521</param-value>
+    </context-param>
+
+
+    <!--                     隔离                -->
+    <!--                  servlet1              -->
+    <!--servlet标签给Tomcat配置servlet程序-->
+    <servlet>
+        <!--servlet-name标签  是给servlet程序起一个别名（一般是类名）与下面的name名字要相同-->
+        <servlet-name>HellowServlet</servlet-name>
+        <!--servlet-class标签  是指servlet程序的全类名-->
+        <servlet-class>com.servlet.HellowServlet</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>HellowServlet_02</servlet-name>
+        <servlet-class>com.servlet.HellowServlet_02</servlet-class>
+    </servlet>
+
+    <servlet>
+        <servlet-name>HellowServlet_03</servlet-name>
+        <servlet-class>com.servlet.HellowServlet_03</servlet-class>
+
+        <!--init-param 是初始化参数-->
+        <init-param>
+            <!--是参数名-->
+            <param-name>username</param-name>
+            <!--是参数值-->
+            <param-value>root</param-value>
+        </init-param>
+        <!--init-param 是初始化参数-->
+        <init-param>
+            <!--是参数名-->
+            <param-name>url</param-name>
+            <!--是参数值-->
+            <param-value>jdbc:mysql://localhost:3306/xscj</param-value>
+        </init-param>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletContext_01</servlet-name>
+        <servlet-class>com.servlet.ServletContext_01</servlet-class>
+    </servlet>
+
+    <!--servlet-mapping标签 是给servlet程序配置访问地址-->
+    <servlet-mapping>
+        <!--这里的name标签的作用是，告诉服务器，我当前配置的地址给哪个servlet程序使用-->
+        <servlet-name>HellowServlet</servlet-name>
+        <!--url-pattern标签 是配置访问地址
+            / 斜杠在服务器解析的时候，表示的地址为 http://ip.port/工程路径
+            工程路径是tomcat中的地址
+        -->
+        <url-pattern>/HS1</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>HellowServlet_02</servlet-name>
+        <url-pattern>/HS2</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>HellowServlet_03</servlet-name>
+        <url-pattern>/HS3</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ServletContext_01</servlet-name>
+        <url-pattern>/SC1</url-pattern>
+    </servlet-mapping>
+
+
+    <!--                     隔离                -->
+    <!--                  servlet2              -->
+    <servlet>
+        <servlet-name>HttpServletRequest_01</servlet-name>
+        <servlet-class>com.servlet2.HttpServletRequest_01</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HttpServletRequest_02</servlet-name>
+        <servlet-class>com.servlet2.HttpServletRequest_02</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HttpServletRequest_03</servlet-name>
+        <servlet-class>com.servlet2.HttpServletRequest_03</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HttpServletRequest_04</servlet-name>
+        <servlet-class>com.servlet2.HttpServletRequest_04</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HttpServletRequest_05</servlet-name>
+        <servlet-class>com.servlet2.HttpServletRequest_05</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HttpServletRequest_06</servlet-name>
+        <servlet-class>com.servlet2.HttpServletRequest_06</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>HttpServletRequest_01</servlet-name>
+        <url-pattern>/HSR1</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>HttpServletRequest_02</servlet-name>
+        <url-pattern>/HSR2</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>HttpServletRequest_03</servlet-name>
+        <url-pattern>/HSR3</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>HttpServletRequest_04</servlet-name>
+        <url-pattern>/HSR4</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>HttpServletRequest_05</servlet-name>
+        <url-pattern>/HSR5</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>HttpServletRequest_06</servlet-name>
+        <url-pattern>/HSR6</url-pattern>
+    </servlet-mapping>
+
+
+    <!--                     隔离                -->
+    <!--                  servlet3              -->
+    <servlet>
+        <servlet-name>HttpServletResponse_01</servlet-name>
+        <servlet-class>com.servlet3.HttpServletResponse_01</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HttpServletResponse_02</servlet-name>
+        <servlet-class>com.servlet3.HttpServletResponse_02</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HttpServletResponse_03</servlet-name>
+        <servlet-class>com.servlet3.HttpServletResponse_03</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>HttpServletResponse_01</servlet-name>
+        <url-pattern>/HSRS1</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HttpServletResponse_02</servlet-name>
+        <url-pattern>/HSRS2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HttpServletResponse_03</servlet-name>
+        <url-pattern>/HSRS3</url-pattern>
+    </servlet-mapping>
+</web-app>

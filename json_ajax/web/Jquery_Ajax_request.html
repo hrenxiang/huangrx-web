@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="Expires" content="0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+    <script type="text/javascript" src="script/jquery-1.7.2.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            // ajax请求
+            $("#ajaxBtn").click(function () {
+                $.ajax({
+                    url: "http://localhost:8080/json_ajax/jqueryAjaxServlet",
+                    type: "GET",
+                    data: {action: "jqueryAjax"},
+                    success: function (data) {
+                        alert(data);
+                        var jsonObj = JSON.parse(data);
+                        //alert(jsonObj);
+                        for (let i = 0; i < jsonObj.length; i++) {
+                            $("#result").append("姓名" + jsonObj[i].name + ", 年龄" + jsonObj[i].age + "\n");
+                        }
+                    },
+                    //async: false//默认异步请求，false为同步请求
+                });
+                //alert("ajax btn");
+            });
+
+            // ajax--get请求
+            $("#getBtn").click(function () {
+                $.get("http://localhost:8080/json_ajax/jqueryAjaxServlet","action=jqueryGET",function (data) {
+                        alert(data);
+                        alert(data.name);
+                        var jsonObj = JSON.parse(data);
+                        //alert(jsonObj);
+                        //alert(jsonObj.length);
+                        for (let i = 0; i < jsonObj.length; i++) {
+                            $("#result").append("姓名" + jsonObj[i].name + ", 年龄" + jsonObj[i].age + "\n");
+                        }
+                });
+
+                //alert(" get btn ");
+
+            });
+
+            // ajax--post请求
+            $("#postBtn").click(function () {
+                // post请求
+                //alert("post btn");
+
+                $.post("http://localhost:8080/json_ajax/jqueryAjaxServlet","action=jqueryPost",function (data) {
+                    alert(data);
+                    var jsonObj = JSON.parse(data);
+                    //alert(jsonObj);
+                    //alert(jsonObj.length);
+                    for (let i = 0; i < jsonObj.length; i++) {
+                        $("#result").append("姓名" + jsonObj[i].name + ", 年龄" + jsonObj[i].age + "\n");
+                    }
+                });
+
+            });
+
+            // ajax--getJson请求
+            $("#getJSONBtn").click(function () {
+                // 调用
+                //alert("getJSON btn");
+                $.getJSON("http://localhost:8080/json_ajax/jqueryAjaxServlet","action=jqueryGetJSON",function (data) {
+                    alert(data[0]);
+                    //var jsonObj = JSON.stringify(data);
+                    //alert(jsonObj);
+                    //alert(jsonObj.length);
+                    for (let i = 0; i < data.length; i++) {
+                        $("#result").append("姓名" + data[i].name + ", 年龄" + data[i].age + "\n");
+                    }
+                });
+            });
+
+            // ajax请求
+            $("#submit").click(function () {
+                // 把参数序列化
+                //alert($("#form01").serialize());
+
+                $.get("http://localhost:8080/json_ajax/jqueryAjaxServlet", "action=jquerySerialize2&"+$("#form01").serialize(), function (data) {
+                    //$("#result").append("姓名"+ data.username + ", 密码"+data.password+"\n");
+                    alert(data);
+                    //$("#result").append("姓名" + data.name + ", 年龄" + data.age + "\n");
+                    $("#result").append(data);
+                })
+            });
+
+        });
+    </script>
+</head>
+<body>
+<div>
+    <button id="ajaxBtn">$.ajax请求</button>
+    <button id="getBtn">$.get请求</button>
+    <button id="postBtn">$.post请求</button>
+    <button id="getJSONBtn">$.getJSON请求</button>
+</div>
+<div id="result" style="white-space:pre"></div>
+<br/><br/>
+<form id="form01">
+    <span id="msg"></span>
+    用户名：<input name="username" type="text"/><br/>
+    密码：<input name="password" type="password"/><br/>
+</form>
+<button id="submit">提交--serialize()</button>
+</body>
+</html>

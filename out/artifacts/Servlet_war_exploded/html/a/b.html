@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>base标签练习</title>
+
+    <base href="http://localhost:8080/Servlet/html/a/b.html">
+</head>
+<body>
+    <a href="../../index.jsp">返回index页面</a>
+</body>
+</html>
+
+<!--
+    http://localhost:8080/Servlet/HSR6  浏览器导航栏网址（请求发送的地址）
+    ../../index.jsp                     要返回的页面
+
+    http://localhost:8080/index.jsp     最终结果
+    http://localhost:8080/Servlet/index.jsp  原网页
+
+    发现网址变化了，这是因为这里的（../../index.jsp  ）使用的是相对路径
+    平常的的地址是：http://localhost:8080/Servlet/html/a/b.html
+    而请求发送的地址是：http://localhost:8080/Servlet/HSR6
+    这样的话，最终请求发送显示的b页面是回不到index页面的
+
+    这时就需要使用，base标签，设置页面使用相对路径跳转时，参考的路径
+-->
